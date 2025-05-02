@@ -1,0 +1,108 @@
+﻿@model IMS.ViewModels.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<hr />
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5>Total Products</h5>
+                <p class="display-6">@Model.TotalStockSummary.TotalProducts</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5>Total Warehouses</h5>
+                <p class="display-6">@Model.TotalStockSummary.TotalWarehouses</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5>Total Inventory</h5>
+                <p class="display-6">@Model.TotalStockSummary.TotalInventoryQuantity</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5>Out of Stock</h5>
+                <p class="display-6">@Model.TotalStockSummary.OutOfStockItems</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Threshold Alerts -->
+<h4>Threshold Alerts</h4>
+@if (Model.ThresholdAlerts.Any())
+{
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Warehouse</th>
+                <th>Current Qty</th>
+                <th>Threshold</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var alert in Model.ThresholdAlerts)
+            {
+                <tr class="table-warning">
+                    <td>@alert.ProductName</td>
+                    <td>@alert.WarehouseName</td>
+                    <td>@alert.CurrentQuantity</td>
+                    <td>@alert.Threshold</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No threshold alerts at the moment.</p>
+}
+
+<!-- Vendor Orders -->
+<h4 class="mt-4">Pending Vendor Orders</h4>
+@if (Model.PendingVendorOrders.Any())
+{
+    <table class="table table-striped table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Vendor</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.PendingVendorOrders)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.VendorName</td>
+                    <td>@order.OrderDate.ToShortDateString()</td>
+                    <td>@order.Status</td>
+                    <td>₹@order.TotalAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No pending vendor orders.</p>
+}
