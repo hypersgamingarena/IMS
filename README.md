@@ -95,4 +95,4 @@ This **Inventory & POS Management System** is designed to streamline the process
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/inventory-pos-system.git
+   git clone https://github.com/hypersgamingarena/IMS.git
