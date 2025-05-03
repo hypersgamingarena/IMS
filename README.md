@@ -77,8 +77,8 @@ This **Inventory & POS Management System** is designed to streamline the process
 
 ### 💻 **Tech Stack**
 - **Frontend**: React, HTML5, CSS3, JavaScript
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (or any other relational database)
+- **Backend**: Dotnet MCV ASP.net Core
+- **Database**: SQL LITE
 - **Messaging**: WhatsApp API (for sending vendor invoices)
 - **Real-Time Data**: WebSockets (for real-time inventory updates)
 
