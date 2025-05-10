@@ -1,0 +1,31 @@
+@model IEnumerable<IMS.Models.Order>
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+<h2>Manage Orders</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.CustomerName</td>
+                <td>@order.OrderDate.ToShortDateString()</td>
+                <td>@order.Status</td>
+                <td>
+                    <a href="/Admin/EditOrder/@order.OrderId" class="btn btn-primary">Edit</a>
+                    <a href="/Admin/DeleteOrder/@order.OrderId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

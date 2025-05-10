@@ -1,0 +1,27 @@
+@model IEnumerable<IMS.Models.User>
+@{
+    ViewData["Title"] = "Manage Users";
+}
+<h2>Manage Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Role</td>
+                <td>
+                    <a href="/Admin/EditUser/@user.Id" class="btn btn-primary">Edit</a>
+                    <a href="/Admin/DeleteUser/@user.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

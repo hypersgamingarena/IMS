@@ -6,6 +6,7 @@ public class Product
     public string SKU { get; set; }    // Product SKU
     public string Description { get; set; } // Description of the product
 
+
     // Price and Threshold directly in Product model
     public decimal Price { get; set; }  // Current price of the product
     public int ThresholdQuantity { get; set; } // Threshold quantity for the product
@@ -26,6 +27,7 @@ public class Product
     // Product active or deleted status
     public bool IsActive { get; set; }
     public bool IsDeleted { get; set; }
+
 
     // Navigation properties for stock entries, price tracking, and inventory
     public virtual ICollection<StockEntry> StockEntries { get; set; }

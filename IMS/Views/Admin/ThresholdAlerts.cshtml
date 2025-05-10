@@ -1,0 +1,26 @@
+@model IEnumerable<IMS.Models.ThresholdAlert>
+@{
+    ViewData["Title"] = "Threshold Alerts";
+}
+<h2>Threshold Alerts</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Warehouse</th>
+            <th>Current Quantity</th>
+            <th>Threshold</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var alert in Model)
+        {
+            <tr>
+                <td>@alert.ProductName</td>
+                <td>@alert.WarehouseName</td>
+                <td>@alert.CurrentQuantity</td>
+                <td>@alert.Threshold</td>
+            </tr>
+        }
+    </tbody>
+</table> 

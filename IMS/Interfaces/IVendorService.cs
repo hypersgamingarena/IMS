@@ -12,6 +12,10 @@ namespace IMS.Interfaces
         Task<Vendor> GetVendorAsync(int id);
         Task<Vendor> UpdateVendorAsync(int id, Vendor updatedVendor);
         Task<bool> DeleteVendorAsync(int id);
+        Task<Vendor> GetVendorByIdAsync(int id); // Fixed return type
+       // Task GetVendorByIdAsync(int id);
+        Task<Vendor> GetVendorByNameAsync(string name);
+
     }
 
 }

@@ -1,0 +1,27 @@
+@model IEnumerable<IMS.Models.Warehouse>
+@{
+    ViewData["Title"] = "Manage Warehouses";
+}
+<h2>Manage Warehouses</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var warehouse in Model)
+        {
+            <tr>
+                <td>@warehouse.Name</td>
+                <td>@warehouse.Location</td>
+                <td>
+                    <a href="/Admin/EditWarehouse/@warehouse.Id" class="btn btn-primary">Edit</a>
+                    <a href="/Admin/DeleteWarehouse/@warehouse.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

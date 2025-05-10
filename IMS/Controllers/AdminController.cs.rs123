@@ -1,0 +1,84 @@
+using Microsoft.AspNetCore.Mvc;
+using IMS.Services;
+using IMS.ViewModels;
+using System;
+using System.Threading.Tasks;
+using IMS.Interfaces;
+using IMS.Models;
+
+
+namespace IMS.Controllers
+{
+	public class AdminController : Controller
+	{
+		private readonly IAdminService _adminService;
+		private readonly IInventoryService _inventoryService;
+
+		public AdminController(IAdminService adminService, IInventoryService inventoryService)
+		{
+			_adminService = adminService;
+			_inventoryService = inventoryService;
+		}
+
+		// GET: Admin
+		public async Task<IActionResult> Index()
+		{
+			try
+			{
+				var model = await _adminService.GetAdminDashboardAsync();
+				return View(model);
+			}
+			catch (Exception ex)
+			{
+				// Log the exception (use a logging library like Serilog or NLog)
+				Console.WriteLine($"An error occurred: {ex.Message}");
+				ViewBag.ErrorMessage = "An error occurred while loading the admin dashboard.";
+				return View("Error");
+			}
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> ApproveRequest(int requestId)
+		{
+			// Approve the request and update inventory
+			await _adminService.ApproveRequestAsync(requestId);
+			return RedirectToAction(nameof(Index));
+		}
+
+		public async Task<IActionResult> ManageProducts()
+		{
+			var products = await _adminService.GetProductsAsync();
+			return View(products);
+		}
+
+		public async Task<IActionResult> ManageWarehouses()
+		{
+			var warehouses = await _adminService.GetWarehousesAsync();
+			return View(warehouses);
+		}
+
+		public async Task<IActionResult> ManageOrders()
+		{
+			var orders = await _adminService.GetOrdersAsync();
+			return View(orders);
+		}
+
+		public async Task<IActionResult> ManageUsers()
+		{
+			var users = await _adminService.GetUsersAsync();
+			return View(users);
+		}
+
+		public async Task<IActionResult> ManageSubProducts(int productId)
+		{
+			var subProducts = await _adminService.GetSubProductsAsync(productId);
+			return View(subProducts);
+		}
+
+		public async Task<IActionResult> ThresholdAlerts()
+		{
+			var alerts = await _adminService.GetThresholdAlertsAsync();
+			return View(alerts);
+		}
+	}
+}

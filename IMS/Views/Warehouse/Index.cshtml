@@ -1,0 +1,31 @@
+@model IEnumerable<IMS.Models.Inventory>
+@{
+    ViewData["Title"] = "Warehouse Inventory";
+}
+<h2>Warehouse Inventory</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Warehouse</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.WarehouseName</td>
+                <td>
+                    <form method="post" action="/Warehouse/FulfillVendorOrder">
+                        <input type="hidden" name="orderId" value="@item.OrderId" />
+                        <button type="submit" class="btn btn-primary">Fulfill Order</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

@@ -1,0 +1,29 @@
+@model IEnumerable<IMS.Models.Product>
+@{
+    ViewData["Title"] = "Manage Products";
+}
+<h2>Manage Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Threshold</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Sku</td>
+                <td>@product.Threshold</td>
+                <td>
+                    <a href="/Admin/EditProduct/@product.Id" class="btn btn-primary">Edit</a>
+                    <a href="/Admin/DeleteProduct/@product.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

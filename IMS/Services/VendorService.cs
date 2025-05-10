@@ -53,6 +53,16 @@ namespace IMS.Services
             }
             return false;
         }
+
+        public Task<Vendor> GetVendorByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Vendor> GetVendorByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
